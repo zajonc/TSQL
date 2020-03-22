@@ -14,7 +14,7 @@ end
 go
 create procedure [dbo].[migracje_sprawdzSchematy]	@dbProd sysname, -- nazwa bazy produkcyjnej
 							@dbDev sysname  -- nazwa bazy deweloperskiej
-							as
+as
 begin
 	set nocount on;
 
