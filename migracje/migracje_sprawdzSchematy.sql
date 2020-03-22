@@ -1,10 +1,10 @@
 use master;
 go
 
--- Sprawdzam czy procedura istnieje - jeœli tak to j¹ usuwam. 
--- Dziêki takiemu podejœciu nie muszê siê przejmowaæ czy wykonywaæ skrypt tworzenia procedury czy jej zmiany.
--- Ponad to jeœli chcê nadaæ procedurze jakieœ specyficzne uprawnienia, wtedy nie muszê siê przejmowaæ usuwaniem poprzednich.
--- Przy takim podejœciu mogê ten skrypt wykonywaæ bezpiecznie wielokrotnie i niczego przez przypadek nie zepsujê :)
+-- Sprawdzam czy procedura istnieje - jeÅ›li tak to jÄ… usuwam. 
+-- DziÄ™ki takiemu podejÅ›ciu nie muszÄ™ siÄ™ przejmowaÄ‡ czy wykonywaÄ‡ skrypt tworzenia procedury czy jej zmiany.
+-- Ponad to jeÅ›li chcÄ™ nadaÄ‡ procedurze jakieÅ› specyficzne uprawnienia, wtedy nie muszÄ™ siÄ™ przejmowaÄ‡ usuwaniem poprzednich.
+-- Przy takim podejÅ›ciu mogÄ™ ten skrypt wykonywaÄ‡ bezpiecznie wielokrotnie i niczego przez przypadek nie zepsujÄ™ :)
 if exists(select *
 		  from [sysobjects]
 		  where [id] = object_id(N'[dbo].[migracje_sprawdzSchematy]')
@@ -12,14 +12,16 @@ if exists(select *
 	drop procedure [dbo].[migracje_sprawdzSchematy]
 end
 go
-create procedure [dbo].[migracje_sprawdzSchematy] @dbProd sysname, @dbDev sysname as
+create procedure [dbo].[migracje_sprawdzSchematy]	@dbProd sysname, -- nazwa bazy produkcyjnej
+							@dbDev sysname  -- nazwa bazy deweloperskiej
+							as
 begin
 	set nocount on;
 
 	declare @error nvarchar(max);
 
-	-- Poniewa¿ zapytanie w dalszej czêœci bêdzie siê opieraæ na dynamicznym SQL (musimy sparametryzowaæ zapytanie nazwami baz danych)
-	-- Dlatego aby unikn¹æ ryzyka, ¿e ktoœ wstrzyknie nam coœ do tego zapytania najpierw sprawdzamy czy obie bazy istniej¹
+	-- PoniewaÅ¼ zapytanie w dalszej czÄ™Å›ci bÄ™dzie siÄ™ opieraÄ‡ na dynamicznym SQL (musimy sparametryzowaÄ‡ zapytanie nazwami baz danych)
+	-- Dlatego aby uniknÄ…Ä‡ ryzyka, Å¼e ktoÅ› wstrzyknie nam coÅ› do tego zapytania najpierw sprawdzamy czy obie bazy istniejÄ…
 	if exists (select * from dbo.sysdatabases where [name] = @dbProd) begin
 		if exists (select * from dbo.sysdatabases where [name] = @dbDev) begin
 			declare @query nvarchar(max) = concat(N'
@@ -47,4 +49,4 @@ begin
 	end
 end
 go
--- Poniewa¿ uparwniony do wykonywania procedury jest tylko administrator dlatego nie musimy dodawaæ ¿adnych dodatkowych uprawnieñ
+-- PoniewaÅ¼ uparwniony do wykonywania procedury jest tylko administrator dlatego nie musimy dodawaÄ‡ Å¼adnych dodatkowych uprawnieÅ„
