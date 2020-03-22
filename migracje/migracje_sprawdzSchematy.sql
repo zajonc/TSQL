@@ -21,7 +21,7 @@ begin
 	declare @error nvarchar(max);
 
 	-- Ponieważ zapytanie w dalszej części będzie się opierać na dynamicznym SQL (musimy sparametryzować zapytanie nazwami baz danych)
-	-- Dlatego aby uniknąć ryzyka, że ktoś wstrzyknie nam coś do tego zapytania najpierw sprawdzamy czy obie bazy istnieją
+	-- dlatego aby uniknąć ryzyka, że ktoś wstrzyknie nam coś do tego zapytania najpierw sprawdzamy czy obie bazy istnieją
 	if exists (select * from dbo.sysdatabases where [name] = @dbProd) begin
 		if exists (select * from dbo.sysdatabases where [name] = @dbDev) begin
 			declare @query nvarchar(max) = concat(N'
