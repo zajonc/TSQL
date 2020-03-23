@@ -26,12 +26,7 @@ begin
 		if exists (select * from dbo.sysdatabases where [name] = @dbDev) begin
 			declare @query nvarchar(max) = concat(N'
 				select coalesce(prod.CATALOG_NAME, dev.CATALOG_NAME) as CATALOG_NAME,
-				coalesce(prod.SCHEMA_NAME, dev.SCHEMA_NAME) as SCHEMA_NAME,
-				case
-					when prod.SCHEMA_NAME is not null then concat(''drop schema ['', prod.SCHEMA_NAME, ''];'')
-					when dev.SCHEMA_NAME is not null then concat(''create schema ['', dev.SCHEMA_NAME, ''];'')
-					else null
-				end as SUGEROWANA_OPERACJA
+				coalesce(prod.SCHEMA_NAME, dev.SCHEMA_NAME) as SCHEMA_NAME
 				from [', @dbProd ,N'].INFORMATION_SCHEMA.SCHEMATA as prod
 				full outer join [', @dbDev ,N'].INFORMATION_SCHEMA.SCHEMATA as dev on dev.SCHEMA_NAME = prod.SCHEMA_NAME
 				where prod.SCHEMA_NAME is null 
