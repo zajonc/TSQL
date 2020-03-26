@@ -1,16 +1,16 @@
 -- Zapytanie pobiera informacje o kolumnach w tabelach użytkownika.
 --
--- Opisy tabeli są brane z Extended Properties, z pola oznaczone jako MS_Description
+-- Opisy kolumn tabeli są brane z Extended Properties, z pola oznaczone jako MS_Description
 --
--- Znaczenie zwracanych wartoœci:
--- 		Table - nazwa tabeli/widoku
---		Schema - schemat tabeli/widoku
+-- Znaczenie zwracanych wartości:
+-- 		Table - nazwa tabeli
+--		Schema - schemat tabeli
 --		Column - nazwa kolumny
 --		PrimaryKey - jeśli kolumna jest PK to pojawi się typ CLUSTERED/NONCLUSTERED, w przeciwnym wypadku NULL
 --		Identity - jeśli kolumna posiada identity to 1, w przeciwym przypadku 0
 --		Nullable - jeśli kolumna dopuszcza wartości NULL to 1, w przeciwnym przypadku 0
---		Default - jeœli kolumna posiada wartość domyślną to będzie ona tutaj widoczna
---		object_id - identyfikator obiektu tabeli/widoku
+--		Default - jeśli kolumna posiada wartość domyślną to będzie ona tutaj widoczna
+--		object_id - identyfikator obiektu tabeli
 --		column_id - identyfikator kolumny
 --		Type - typ kolumny wraz z rozmiarem
 --		ForeignKeyName - jeśli kolumna posiada odniesienie do innej kolumny wtedy tutaj pojawia się nazwa klucza
