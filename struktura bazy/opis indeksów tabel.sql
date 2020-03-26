@@ -17,23 +17,22 @@
 -- Autor: Zajonc (https://blog.zajonc.pl)
 
 
-select st.name [Table],
-	   st.object_id [TableId],
-	   sch.name [Schema],
-	   idx.name [Name],
-	   idx.is_primary_key [PrimaryKey],
-	   idx.is_unique [Unique],
-	   idx.is_unique_constraint [UniqeConstraint],
-	   idx.type_desc [Type],
-	   idx.filter_definition [Filter],
-	   sep.value [Description]
-from sys.all_objects as st
-inner join sys.schemas as sch on st.schema_id = sch.schema_id
-inner join sys.indexes as idx on st.object_id = idx.object_id
-left join sys.extended_properties sep on idx.index_id = sep.major_id
-	and sep.minor_id = 0
-	and sep.class_desc = 'OBJECT_OR_COLUMN'
-	and sep.name = 'MS_Description'
-where st.type in ('U')
-  and sch.name not in ('sys', 'INFORMATION_SCHEMA')
-  and idx.index_id > 0
+select [st].[name] as [Table],
+	   [st].[object_id] as [TableId],
+	   [sch].[name] as [Schema],
+	   [idx].[name] as [Name],
+	   [idx].[is_primary_key] as [PrimaryKey],
+	   [idx].[is_unique] as [Unique],
+	   [idx].[is_unique_constraint] as [UniqeConstraint],
+	   [idx].[type_desc] as [Type],
+	   [idx].[filter_definition] as [Filter],
+	   [sep].[value] as [Description]
+from [sys].[all_objects] as [st]
+inner join [sys].[schemas] as [sch] on [st].[schema_id] = [sch].[schema_id]
+inner join [sys].[indexes] as [idx] on [st].[object_id] = [idx].[object_id]
+left join [sys].[extended_properties] [sep] on [idx].[index_id] = [sep].[major_id] and [sep].[minor_id] = 0 and
+											   [sep].[class_desc] = 'OBJECT_OR_COLUMN' and
+											   [sep].[name] = 'MS_Description'
+where [st].[type] in ('U')
+  and [sch].[name] not in ('sys', 'INFORMATION_SCHEMA')
+  and [idx].[index_id] > 0
