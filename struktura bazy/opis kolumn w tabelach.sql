@@ -53,8 +53,8 @@ left join [sys].[schemas] as [fkcs] on [fkcs].[schema_id] = [fkco].[schema_id]
 left join [sys].[columns] as [fkcc]
 		  on [fkcc].[object_id] = [fkc].[referenced_object_id] and [fkcc].[column_id] = [fkc].[referenced_column_id]
 left join [sys].[indexes] as [idx]
-		  on [idx].[object_id] = [st].[object_id] and [idx].[is_primary_key] = 1 and exists(select *
-																							from [sys].[index_columns] as [ic]
-																							where [ic].[index_id] = [idx].[index_id]
-																							  and [ic].[object_id] = [st].[object_id]
-																							  and [ic].[column_id] = [sc].[column_id])
+		  on [idx].[object_id] = [st].[object_id] and [idx].[is_primary_key] = 1 and exists(	select *
+													from [sys].[index_columns] as [ic]
+													where [ic].[index_id] = [idx].[index_id]
+													  and [ic].[object_id] = [st].[object_id]
+													  and [ic].[column_id] = [sc].[column_id])
