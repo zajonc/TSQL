@@ -1,20 +1,20 @@
--- Zapytanie pobiera informacje o kolumnach w tabelach u¿ytkownika.
+-- Zapytanie pobiera informacje o kolumnach w tabelach uÅ¼ytkownika.
 --
--- Opisy tabeli s¹ brane z Extended Properties, z pola oznaczone jako MS_Description
+-- Opisy tabeli sÄ… brane z Extended Properties, z pola oznaczone jako MS_Description
 --
--- Znaczenie zwracanych wartoœci:
+-- Znaczenie zwracanych wartoÅ“ci:
 -- 		Table - nazwa tabeli/widoku
 --		Schema - schemat tabeli/widoku
 --		Column - nazwa kolumny
---		PrimaryKey - jeœli kolumna jest PK to pojawi siê typ CLUSTERED/NONCLUSTERED, w przyeciwnym wypadku NULL
---		Identity - jeœli kolumna posiada identity to 1, w przeciwym przypadku 0
---		Nullable - jeœli kolumna dopuszcza wartoœci NULL to 1, w przeciwnym przypadku 0
---		Default - jeœli kolumna posiada wartoœæ domyœln¹ to bêdzie ona tutaj widoczna
+--		PrimaryKey - jeÅ›li kolumna jest PK to pojawi siÄ™ typ CLUSTERED/NONCLUSTERED, w przeciwnym wypadku NULL
+--		Identity - jeÅ›li kolumna posiada identity to 1, w przeciwym przypadku 0
+--		Nullable - jeÅ›li kolumna dopuszcza wartoÅ›ci NULL to 1, w przeciwnym przypadku 0
+--		Default - jeÅ“li kolumna posiada wartoÅ›Ä‡ domyÅ›lnÄ… to bÄ™dzie ona tutaj widoczna
 --		object_id - identyfikator obiektu tabeli/widoku
 --		column_id - identyfikator kolumny
 --		Type - typ kolumny wraz z rozmiarem
---		ForeignKeyName - jeœli kolumna posiada odniesienie do innej kolumny wtedy tutaj pojawia siê nazwa klucza
---		ForeignKeyReference - jeœli kolumna posiada odniesienie do innej kolumny wtedy tutaj pojawia siê wskazanie tej kolumny
+--		ForeignKeyName - jeÅ›li kolumna posiada odniesienie do innej kolumny wtedy tutaj pojawia siÄ™ nazwa klucza
+--		ForeignKeyReference - jeÅ›li kolumna posiada odniesienie do innej kolumny wtedy tutaj pojawia siÄ™ wskazanie tej kolumny
 --		Description - opis kolumny jako pole MS_Description z Extended Properties
 --
 -- Autor: Zajonc (https://blog.zajonc.pl)
