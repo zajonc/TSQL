@@ -25,7 +25,7 @@ select distinct
 	   coalesce([sal].[type_desc], [ssed].[referenced_class_desc]) as [DependencyObjectType]
 from [sys].[all_objects] as [m]
 inner join [sys].[schemas] as [msch] on [msch].[schema_id] = [m].[schema_id]
-inner join [sys].[sql_expression_dependencies] as [ssed] on [ssed].[referencing_id] = [m].[object_id]
+inner join sys.sql_expression_dependencies as ssed on ssed.referencing_id = m.object_id and ssed.referencing_class_desc = 'OBJECT_OR_COLUMN'
 left join [sys].[all_objects] as [sal]
 		  on [sal].[object_id] = [ssed].[referenced_id] and [ssed].[referenced_class_desc] = 'OBJECT_OR_COLUMN'
 left join [sys].[types] as [st]
