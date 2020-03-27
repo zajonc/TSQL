@@ -26,7 +26,8 @@ select distinct
 	   [sal].[type_desc] as [DependantdObjectType]
 from [sys].[all_objects] as [m]
 inner join [sys].[schemas] as [msch] on [msch].[schema_id] = [m].[schema_id]
-inner join [sys].[sql_expression_dependencies] as [ssed] on [ssed].[referenced_id] = [m].[object_id]
+inner join [sys].[sql_expression_dependencies] as [ssed] 
+		   on [ssed].[referenced_id] = [m].[object_id] and ssed.referencing_class_desc = 'OBJECT_OR_COLUMN'
 inner join [sys].[all_objects] as [sal]
 		   on [sal].[object_id] = [ssed].[referencing_id] and [ssed].[referenced_class_desc] = 'OBJECT_OR_COLUMN'
 inner join [sys].[schemas] as [sch] on [sch].[schema_id] = [sal].[schema_id]
