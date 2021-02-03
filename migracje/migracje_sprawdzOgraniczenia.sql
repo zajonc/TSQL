@@ -25,8 +25,8 @@ begin
 		if exists (select * from dbo.sysdatabases where [name] = @dbDev) begin
 			declare @query nvarchar(max) = N'';
 
-			-- Musimy zastosować sztuczkę z konkatenacją wykrozystującą zmienną o typie nvarchar(max).
-			-- Bez tego concat nie zwróci nam typu nvarchar(max) co przy tak długim zapytaniu po prostu je utnie.
+			-- Musimy zastosować sztuczkę z konkatenacją wykorzystującą zmienną o typie nvarchar(max).
+			-- Bez tego concat nie zwróci nam typu nvarchar(max), co przy tak długim zapytaniu po prostu by je ucięło w najmniej oczekiwanym miejscu.
 			set @query = concat(@query, N'
 				with fk_prod as (
 					select fk.[object_id], concat(s.name, ''.'', ro.name, ''('', c.name, '')'') as [definition]
